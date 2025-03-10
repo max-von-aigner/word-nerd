@@ -1,12 +1,12 @@
 import React from "react";
 
-export function GuessInput({ handleSubmit }) {
+export function GuessInput({ handleSubmitGuess }) {
   const [input, setInput] = React.useState("");
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        handleSubmit(input);
+        handleSubmitGuess(input);
         setInput("");
       }}
       style={{ display: "flex", flexDirection: "column" }}
@@ -18,6 +18,8 @@ export function GuessInput({ handleSubmit }) {
         value={input}
         onChange={(event) => setInput(event.target.value.toUpperCase())}
         pattern="[A-Z]{5}"
+        minLength={5}
+        maxLength={5}
       />
     </form>
   );
