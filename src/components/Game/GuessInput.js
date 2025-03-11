@@ -9,7 +9,6 @@ export function GuessInput({ handleSubmitGuess }) {
         handleSubmitGuess(input);
         setInput("");
       }}
-      style={{ display: "flex", flexDirection: "column" }}
     >
       <label>Enter guess: </label>
       <input
