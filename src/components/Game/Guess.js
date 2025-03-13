@@ -7,8 +7,16 @@ function Cell({ letter, status }) {
   return <span className={className}>{letter}</span>;
 }
 
-export function Guess({ value, answer }) {
+export function Guess({ value, answer, setGameFinished }) {
   const result = checkGuess(value, answer);
+
+  const statusArray = result && result.map((result) => result.status);
+
+  function checkStatus(status) {
+    return status === "correct";
+  }
+  //   const rightAnswerLogged = statusArray && statusArray.every(checkStatus);
+  //   setGameFinished(rightAnswerLogged);
 
   return (
     <p className="guess">
