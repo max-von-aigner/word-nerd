@@ -2,7 +2,7 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { range } from "../../utils";
 import { Guess } from "./Guess";
 
-export function GuessResults({ guesses, answer, setGameFinished }) {
+export function GuessResults({ guesses, answer, setGameFinished, setGameWon }) {
   return (
     <div className="guess-results">
       {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
@@ -10,7 +10,8 @@ export function GuessResults({ guesses, answer, setGameFinished }) {
           answer={answer}
           key={num}
           value={guesses[num] ? guesses[num].value : undefined}
-          // setGameFinished={setGameFinished}
+          setGameFinished={setGameFinished}
+          setGameWon={setGameWon}
         />
       ))}
     </div>

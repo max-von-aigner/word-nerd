@@ -7,7 +7,7 @@ function Cell({ letter, status }) {
   return <span className={className}>{letter}</span>;
 }
 
-export function Guess({ value, answer, setGameFinished }) {
+export function Guess({ value, answer, setGameFinished, setGameWon }) {
   const result = checkGuess(value, answer);
 
   const statusArray = result && result.map((result) => result.status);
@@ -15,8 +15,14 @@ export function Guess({ value, answer, setGameFinished }) {
   function checkStatus(status) {
     return status === "correct";
   }
-  //   const rightAnswerLogged = statusArray && statusArray.every(checkStatus);
-  //   setGameFinished(rightAnswerLogged);
+  const rightAnswerLogged = statusArray && statusArray.every(checkStatus);
+
+  React.useEffect(() => {
+    if (rightAnswerLogged) {
+      setGameFinished(rightAnswerLogged), setGameWon(rightAnswerLogged);
+    }
+    [statusArray];
+  });
 
   return (
     <p className="guess">

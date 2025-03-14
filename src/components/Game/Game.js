@@ -18,6 +18,7 @@ function Game() {
   const [guesses, setGuesses] = React.useState([]);
   const [round, setRound] = React.useState(0);
   const [gameFinished, setGameFinished] = React.useState(false);
+  const [gameWon, setGameWon] = React.useState(false);
 
   function handleSubmitGuess(value) {
     const newGuess = {
@@ -36,12 +37,22 @@ function Game() {
     }
   }, [round]);
 
-  console.log({ gameFinished });
+  console.log({ gameFinished, gameWon, round });
+
+  const playerWon = gameFinished & gameWon ? true : false;
+
+  const playerLost = gameFinished & !gameWon ? true : false;
 
   return (
     <>
-      {gameFinished && <WinBanner />}
-      <GuessResults guesses={guesses} answer={answer} />
+      {playerWon && <WinBanner roundCount={round} />}
+      {playerLost && <LoseBanner answer={answer} />}
+      <GuessResults
+        guesses={guesses}
+        answer={answer}
+        setGameFinished={setGameFinished}
+        setGameWon={setGameWon}
+      />
       <GuessInput handleSubmitGuess={handleSubmitGuess} />
     </>
   );
