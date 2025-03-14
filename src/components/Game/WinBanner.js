@@ -5,12 +5,11 @@ export function WinBanner({ roundCount }) {
     <div className="happy banner">
       <p>
         <strong>Congratulations!</strong> Got it in
-        {roundCount === 1 ? (
-          <strong> {roundCount} guess</strong>
-        ) : (
-          <strong> {roundCount} guesses</strong>
-        )}
-        {/* <strong> {roundCount} guesses</strong>. */}
+        <strong>
+          {" "}
+          {roundCount} {roundCount === 1 ? "guess" : "guesses"}
+        </strong>
+        .
       </p>
     </div>
   );

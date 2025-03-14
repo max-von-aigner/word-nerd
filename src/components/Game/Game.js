@@ -9,6 +9,7 @@ import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
 import { WinBanner } from "./WinBanner";
 import { LoseBanner } from "./LoseBanner";
+import { ResetButton } from "./ResetButton";
 
 const answer = sample(WORDS);
 
@@ -29,6 +30,13 @@ function Game() {
     setGuesses([...guesses, newGuess]);
     const newCount = round + 1;
     setRound(newCount);
+  }
+
+  function resetGame() {
+    setGameFinished(false);
+    setRound(0);
+    setGuesses([]);
+    setGameWon(false);
   }
 
   React.useEffect(() => {
@@ -53,6 +61,7 @@ function Game() {
         setGameFinished={setGameFinished}
         setGameWon={setGameWon}
       />
+      {gameFinished && <ResetButton handleClick={resetGame} />}
       <GuessInput handleSubmitGuess={handleSubmitGuess} />
     </>
   );
